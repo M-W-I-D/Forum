@@ -74,7 +74,7 @@
             margin-top: 10px;
             border-radius: 8px;
         }
-        .view-btn {
+        .view-btn, .delete-btn {
             background-color: #4CAF50;
             color: white;
             padding: 8px 15px;
@@ -83,8 +83,14 @@
             text-decoration: none;
             margin-top: 10px;
         }
-        .view-btn:hover {
+        .view-btn:hover, .delete-btn:hover {
             background-color: #45a049;
+        }
+        .delete-btn {
+            background-color: #e74c3c;
+        }
+        .delete-btn:hover {
+            background-color: #c0392b;
         }
     </style>
 </head>
@@ -104,6 +110,9 @@
                     {% endif %}
                     <p><em>Posted on: {{ post.date_posted }}</em></p>
                     <a href="{{ url_for('post_detail', post_id=post.id) }}" class="view-btn">View Post</a>
+
+                    <!-- Nút xóa bài đăng -->
+                    <a href="{{ url_for('delete_post', post_id=post.id) }}" class="delete-btn" onclick="return confirm('Are you sure you want to delete this post?')">Delete Post</a>
                 </li>
             {% endfor %}
         </ul>
